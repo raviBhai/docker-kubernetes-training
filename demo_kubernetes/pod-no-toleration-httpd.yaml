@@ -1,0 +1,11 @@
+######### kubectl create -f pod-defination.yaml ############################
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: httpd-test-pod
+  labels:
+    country: us
+spec:
+  containers:
+    - name: httpd-test
+      image: httpd

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-deployment
+  labels:
+    country: us
+spec:
+  template:
+    metadata:
+      name: nodejs-pod
+      labels:
+        type: nodejs-backend
+    spec:
+      containers:
+        - name: nodejs-container
+          image: navjoy220161/node-mongo:1.0.10
+          envFrom:
+          - configMapRef:
+              name: mongo-db-config-map
+
+  replicas: 3
+  selector:
+    matchLabels:
+      type: nodejs-backend
+

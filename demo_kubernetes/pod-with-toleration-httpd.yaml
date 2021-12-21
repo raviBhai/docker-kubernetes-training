@@ -1,0 +1,25 @@
+######### kubectl create -f pod-defination.yaml ############################
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: httpd-prod-pod
+  labels:
+    country: us
+spec:
+  containers:
+    - name: httpd-prod
+      image: httpd
+  tolerations:
+  - key: "env"
+    operator: "Equal"
+    value: "prod"
+    effect: "NoSchedule"      
+  affinity: 
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: gpu
+            operator: In
+            values:
+            - "yes"

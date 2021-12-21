@@ -1,0 +1,85 @@
+https://github.com/technoavengers/Kubernetes_Fundamentals
+
+Docker and Kubernetes - 
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+https://labs.play-with-docker.com/
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+docker run --name python-c -d -p 8081:5000  navjoy220161/python_flask:1.0.0
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+After running/starting/stopping the docker container, to check the generated logs - 
+docker logs <container_id>
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Copy file from container to local machine - 
+go to machine terminal - 
+docker cp <container_id>:/path/to/file /path/on/local/machine
+
+Copy file from local machine to container - 
+go to machine terminal - 
+docker cp /path/on/local/machine <container_id>:/path/to/file
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Create docker image - 
+
+Docker file - it is used to create docker image
+
+File name - > Dockerfile
+
+Create Dockerfile with below content - 
+FROM httpd
+EXPOSE 80
+ENTRYPOINT ["httpd-foreground"]
+
+Go to the folder which has Dockerfile and run the below command with the end dot in it - 
+docker build -t ravibhai/myhttpd:1.0.0 .
+docker push ravibhai/myhttpd:1.0.0
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Kubernetes - 
+Pods
+smallest unit
+multiple pods per machine
+multiple containers per pod
+usually 1 container per pod
+each pod has an IP
+containes communicated with each other via service
+
+
+docker commands start with docker word
+similarly, kubernetes commands start with kubectl word
+
+
+kubectl run httpd-pod --image httpd
+kubectl get pods
+
+
+kubectl create -f <pod-yaml-file>
+
+kubectl exec -it <pod_name> -c <container_name> sh
+
+kubectl get pods -o yaml > myYaml.yaml
+
+
+
+
+
+
+
+
+
+

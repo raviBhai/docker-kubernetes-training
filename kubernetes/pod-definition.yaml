@@ -1,0 +1,12 @@
+######### kubectl create -f pod-defination.yaml ############################
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: nginx-pod-1
+  labels:
+    type: loadbalancer
+    country: us
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:1.21.1-alpine

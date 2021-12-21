@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-pod
+spec:
+  containers:
+    - name: httpd-container
+      image: httpd
+      envFrom:
+      - configMapRef:
+          name: ui-config-map
+      env:
+        - name: ENEMIES_TYPE
+          valueFrom: 
+              configMapKeyRef:
+                name: gamingconfigmap
+                key: enemies
+        - name: TOTAL_LIVES
+          valueFrom: 
+              configMapKeyRef:
+                name: gamingconfigmap
+                key: lives
+  restartPolicy: Never

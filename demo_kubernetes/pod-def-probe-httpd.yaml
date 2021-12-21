@@ -1,0 +1,29 @@
+######### kubectl create -f pod-defination.yaml ############################
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: httpd-probe-pod
+  labels:
+    country: us
+spec:
+  containers:
+    - name: httpd-probe
+      image: httpd
+      command: ["/bin/sh"]
+      args: ["-c", "sleep 20; touch hello ; httpd-foreground"]
+      readinessProbe:
+        exec:
+          command:
+            - cat
+            - hello
+        initialDelaySeconds: 10
+        periodSeconds: 6
+        failureThreshold: 4
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 80
+        initialDelaySeconds: 30
+        periodSeconds: 3
+        failureThreshold: 3
+        
